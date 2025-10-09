@@ -5,8 +5,8 @@ def ResolutionCholeski(A, b):
     L = Choleski(A)
     LT = np.matrix_transpose(L)
 
-    y = np.lingalg.solve(L, b)
-    x = np.lingalg.solve(LT, y)
+    y = np.linalg.solve(L, b)
+    x = np.linalg.solve(LT, y)
 
     return x
 
@@ -19,4 +19,4 @@ A = np.array([[10, 7, 8, 7],
 
 b = np.array([32, 23, 33, 31])
 
-print(ResolutionCholeski(A, b))
+(ResolutionCholeski(A, b))

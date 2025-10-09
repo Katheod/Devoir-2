@@ -44,9 +44,3 @@ def Choleski(matrix):
             res[i][k] = lik
     
     return res
-
-matrix = np.array([[4, 1, 2],
-                   [1, 2, 0],
-                   [2, 0, 3]])
-
-print(Choleski(matrix))  # True
