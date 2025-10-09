@@ -1,55 +1,49 @@
 import numpy as np
-def validerCholeski(matrix):
-    """Valide si une matrice est symétrique définie positive.
+
+def Choleski(A):
+    """Effectue la décomposition de Choleski si une matrice est symétrique et définie positive. Sinon, elle lève une exception.
 
     Args:
-        matrix (np.ndarray): La matrice à valider.
+        A (np.ndarray): La matrice à décomposer.
 
     Returns:
-        bool: True si la matrice est symétrique définie positive, False sinon.
+        np.ndarray: La matrice triangulaire inférieure.
     """
+    # Critères de validation.
     symetrie = True
     det_positif = False
-    n = len(matrix)
+    n = len(A)
 
     # Vérification de la symétrie.
     for i in range(n):
         for j in range(n):
-            if matrix[i][j] != matrix[j][i]:
+            if A[i][j] != A[j][i]:
                 symetrie = False
                 break
 
     # Vérification du déterminant positif.
-    if np.linalg.det(matrix) > 0:
+    if np.linalg.det(A) > 0:
         det_positif = True
 
-    return (symetrie and det_positif)
+    validation_critere = (symetrie and det_positif)
 
 
-def Choleski(matrix):
-    """Effectue la décomposition de Choleski d'une matrice symétrique définie positive.
 
-    Args:
-        matrix (np.ndarray): La matrice à décomposer.
-
-    Returns:
-        np.ndarray: La matrice triangulaire inférieure résultante.
-    """
     # Validation de la matrice.
-    assert validerCholeski(matrix), "La matrice n'est pas symétrique définie positive"
+    assert validation_critere, "La matrice n'est pas symétrique définie positive"
 
     # Initialisation de la matrice résultat.
-    res = np.zeros_like(matrix)
-    
+    res = np.zeros_like(A)
+
     # Calcul du premier pivot.
-    l11 = np.sqrt(matrix[0][0])
+    l11 = np.sqrt(A[0][0])
     res[0][0] = l11
 
-    n = len(matrix)
+    n = len(A)
 
     # Calcul de la première colonne.
     for i in range(1, n):
-        li1 = matrix[i][0]/ l11
+        li1 = A[i][0]/ l11
         res[i][0] = li1
     
     # Calcul des termes diagonal (pivot).
@@ -57,7 +51,7 @@ def Choleski(matrix):
         sum1 = 0
         for j in range(k):
             sum1 += res[k][j]**2
-        lkk = np.sqrt(matrix[k][k] - sum1)
+        lkk = np.sqrt(A[k][k] - sum1)
         res[k][k] = lkk
 
         # Calcul des autres termes.
@@ -65,7 +59,7 @@ def Choleski(matrix):
             sum2 = 0
             for j in range(k):
                 sum2 += res[i][j]*res[k][j]
-            lik = (matrix[i][k] - sum2)/lkk
+            lik = (A[i][k] - sum2)/lkk
             res[i][k] = lik
     
     return res

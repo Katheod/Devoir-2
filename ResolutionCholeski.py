@@ -24,8 +24,10 @@ def ResolutionCholeski(A, b):
     return x
 
 
-
-A = np.array([[10, 7, 8, 7],
+# Le dtype=float est essentielle à la résolution du système.
+# Sans cela, numpy convertit les valeurs en int et la racine carrée d'un int n'est pas un int. 
+# Ce qui donne un résultat erroné.
+A = np.array([[10, 8, 8, 7],
               [7, 5, 6, 5],
               [8, 6, 10, 9],
               [7, 5, 9, 10]], dtype=float)
