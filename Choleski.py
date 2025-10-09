@@ -3,7 +3,6 @@ def validerCholeski(matrix):
     symetrie = True
     det_positif = False
     n = len(matrix)
-    print(n)
 
     for i in range(n):
         for j in range(n):
@@ -39,7 +38,7 @@ def Choleski(matrix):
 
         for i in range(k+1, n):
             sum2 = 0
-            for p in range(k):
+            for j in range(k):
                 sum2 += res[i][j]*res[k][j]
             lik = (matrix[i][k] - sum2)/lkk
             res[i][k] = lik
