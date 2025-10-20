@@ -52,7 +52,7 @@ for i in range(3):
     norme_b = np.linalg.norm(b,s)
 
     erreur_relative_b = norme_r/norme_b
-    cond_A = np.linalg.norm(A,s)/np.linalg.norm(A1,s)
+    cond_A = np.linalg.norm(A,s)*np.linalg.norm(A1,s)
 
     borne_inf_erreur_x = 1/cond_A * erreur_relative_b
     borne_sup_erreur_x = cond_A * erreur_relative_b
