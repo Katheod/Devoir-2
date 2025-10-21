@@ -14,7 +14,7 @@ def ResolutionCholeski(A, b):
     # Récupérer la décomposition de Choleski.
     L = Choleski(A)
     # Calculer la transposée de L.
-    LT = np.matrix_transpose(L)
+    LT = np.matrix.transpose(L)
 
     # Résoudre Ly = b.
     y = np.linalg.solve(L, b)
