@@ -37,7 +37,6 @@ b = np.array([32, 23, 33, 31], dtype=float)
 print(f"Le vecteur x = {ResolutionCholeski(A, b)}")
 
 #Inverse de A
-print(np.linalg.inv(A))
 
 
 e1 = np.array([1,0,0,0])
